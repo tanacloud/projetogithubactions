@@ -397,6 +397,7 @@ Resources:
         IamInstanceProfile:
           Arn:
             Fn::GetAtt: [WebappInstanceProfile, Arn]
+        AssociatePublicIpAddress: true    
         UserData:
           Fn::Base64: |
       
