@@ -474,7 +474,7 @@ Resources:
       MaxSize: !Ref AutoScalingGroupMaxSize
       LaunchTemplate:
         LaunchTemplateName: !Ref WebappLaunchTemplate
-        Version: "Latest"
+        Version: "$Latest"
       VPCZoneIdentifier:
         - Ref: PrivateSubnet1 
         - Ref: PrivateSubnet2 
