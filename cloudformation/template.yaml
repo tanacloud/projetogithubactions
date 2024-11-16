@@ -386,7 +386,7 @@ Resources:
     Type: AWS::EC2::LaunchTemplate
     Properties:
       LaunchTemplateName: WebappLaunchTemplate
-      VersionDescription: "v1"
+      VersionDescription: "1"
       LaunchTemplateData:
         ImageId:
           Ref: ImageId
