@@ -465,6 +465,7 @@ Resources:
 
   AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
+    DependsOn: WebappLaunchTemplate
     Properties:
       HealthCheckType: ELB
       HealthCheckGracePeriod: 300
@@ -473,7 +474,7 @@ Resources:
       MaxSize: !Ref AutoScalingGroupMaxSize
       LaunchTemplate:
         LaunchTemplateName: !Ref WebappLaunchTemplate
-        Version: "1"
+        Version: "Latest"
       VPCZoneIdentifier:
         - Ref: PrivateSubnet1 
         - Ref: PrivateSubnet2 
