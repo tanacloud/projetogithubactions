@@ -382,21 +382,25 @@ Resources:
     Properties:
       Roles:
         - Ref: WebappRole
-  WebappLaunchConfig:
-    Type: AWS::AutoScaling::LaunchConfiguration
+  WebappLaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
     Properties:
-      AssociatePublicIpAddress: true
-      ImageId:
-        Ref: ImageId
-      InstanceType: 
-        Ref: InstanceType
-      SecurityGroups:
-        - Ref: WebappSecurityGroup
-      IamInstanceProfile:
-        Ref: WebappInstanceProfile
-      UserData:
-        "Fn::Base64":
-          !Sub |
+      LaunchTemplateName: WebappLaunchTemplate
+      VersionDescription: "v1"
+      LaunchTemplateData:
+        AssociatePublicIpAddress: true
+        ImageId:
+          Ref: ImageId
+        InstanceType: 
+          Ref: InstanceType
+        SecurityGroups:
+          - Ref: WebappSecurityGroup
+        IamInstanceProfile:
+          Arn:
+            Fn::GetAtt: [WebappInstanceProfile, Arn]
+        UserData:
+          "Fn::Base64" |
+      
               #!/bin/bash
 
               yum  install -y java-1.8.0-openjdk-devel wget
@@ -469,7 +473,7 @@ Resources:
       MinSize: !Ref AutoScalingGroupMinSize
       MaxSize: !Ref AutoScalingGroupMaxSize
       LaunchConfigurationName:
-        Ref: WebappLaunchConfig
+        Ref: WebappLaunchTemplate
       VPCZoneIdentifier:
         - Ref: PrivateSubnet1 
         - Ref: PrivateSubnet2 
