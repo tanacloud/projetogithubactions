@@ -388,7 +388,6 @@ Resources:
       LaunchTemplateName: WebappLaunchTemplate
       VersionDescription: "v1"
       LaunchTemplateData:
-        AssociatePublicIpAddress: true
         ImageId:
           Ref: ImageId
         InstanceType: 
